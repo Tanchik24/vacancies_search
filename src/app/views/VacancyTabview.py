@@ -42,7 +42,7 @@ class VacancyTabView(TabView):
                 st.sidebar.write(title, value)
 
     def get_candidates(self):
-        df = pd.read_excel('/Users/tanchik/Downloads/resume_job.xlsx')
+        df = pd.read_excel('./data/resume_job.xlsx')
         random_rows = df.sample(n=10)
         resumes = random_rows['Resume Description'].tolist()
         if st.button("Получить кандидатов"):
