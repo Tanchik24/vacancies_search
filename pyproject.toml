@@ -10,6 +10,26 @@ packages = [{include = "vacancies_search", from = "src"}]
 python = "^3.10"
 streamlit = "^1.29.0"
 openpyxl = "^3.1.2"
+langchain = "^0.0.335"
+elasticsearch = "^8.7.0"
+beautifulsoup4 = "^4.12.2"
+lxml = "^4.9.2"
+tiktoken = "^0.3.3"
+sentence-transformers = "^2.2.2"
+torch = { version = "1.13.1", source = "torch-cuda-11-6" }
+playwright = "^1.39.0"
+faiss-cpu = "^1.7.4"
+
+
+[[tool.poetry.source]]
+name = "torch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
+
+[[tool.poetry.source]]
+name = "torch-cuda-11-6"
+url = "https://download.pytorch.org/whl/cu116"
+priority = "explicit"
 
 
 [build-system]

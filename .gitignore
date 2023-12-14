@@ -67,4 +67,9 @@ venv.bak/
 .mypy_cache/
 
 # data
-data/*.xlsx
+data/*
+!data/.gitkeep
+
+# vector_db
+vector_db/*
+!vector_db/.gitkeep
