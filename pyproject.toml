@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "vacancies-search"
+version = "0.1.0"
+description = ""
+authors = ["Tatiana Maslennikova <tanyamaslennikova24@mail.ru>"]
+readme = "README.md"
+packages = [{include = "vacancies_search", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+streamlit = "^1.29.0"
+openpyxl = "^3.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
