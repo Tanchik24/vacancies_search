@@ -5,6 +5,10 @@ import streamlit as st
 from src.app.data import Vacancy
 from src.app.views import TabView
 
+from src.ml.init_vector_db import init_vector_db
+
+db_jobs, db_resume = init_vector_db()
+
 
 def display_resumes(resumes):
     for resume in resumes:
@@ -42,10 +46,11 @@ class VacancyTabView(TabView):
                 st.sidebar.write(title, value)
 
     def get_candidates(self):
-        df = pd.read_excel('./data/resume_job.xlsx')
-        random_rows = df.sample(n=10)
-        resumes = random_rows['Resume Description'].tolist()
+
         if st.button("Получить кандидатов"):
             info_dict = {'Город': self.text_info.city, 'Предлагаемая зарплата': self.text_info.salary}
-            # метод для получения списка из резюме
-            display_resumes(resumes)
+            
+            docs = db_resume.similarity_search(self.text_info.description, k=10) 
+            resumes_list = [doc.page_content for doc in docs]
+            
+            display_resumes(resumes_list)

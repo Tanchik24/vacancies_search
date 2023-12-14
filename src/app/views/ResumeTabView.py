@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 
+from src.ml.recommendations import get_job_recommendations
 from src.app.data import Resume
 from src.app.views import TabView
 from src.app import Format
@@ -54,12 +55,11 @@ class ResumeTabView(TabView):
                 st.sidebar.write(title, value)
 
     def get_candidates(self):
-        df = pd.read_excel('./data/resume_job.xlsx')
-        random_rows = df.sample(n=10)
-        vacancies = random_rows['Job Description'].tolist()
 
         if st.button("Получить вакансии"):
             info_dict = {'Город': self.text_info.city, 'Опыт работы': self.text_info.experience,
                          'Желаемая зарплата': self.text_info.desired_salary}
-            # метод для полученяи списка из вакансий
-            display_vacancies(vacancies)
+            
+            vacancies_list=get_job_recommendations(text=self.text_info.description)
+            
+            display_vacancies(vacancies_list)
