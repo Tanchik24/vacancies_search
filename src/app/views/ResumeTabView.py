@@ -60,6 +60,11 @@ class ResumeTabView(TabView):
             info_dict = {'Город': self.text_info.city, 'Опыт работы': self.text_info.experience,
                          'Желаемая зарплата': self.text_info.desired_salary}
             
-            vacancies_list=get_job_recommendations(text=self.text_info.description)
+            if len(info_dict['Город'])>0:
+                city = info_dict['Город']
+            else:
+                city = None
+            
+            vacancies_list=get_job_recommendations(text=self.text_info.description, city=city)
             
             display_vacancies(vacancies_list)

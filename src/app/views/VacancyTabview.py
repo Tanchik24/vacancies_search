@@ -5,6 +5,7 @@ import streamlit as st
 from src.app.data import Vacancy
 from src.app.views import TabView
 
+from src.ml.recommendations import get_resume_recommendations
 from src.ml.init_vector_db import init_vector_db
 
 db_jobs, db_resume = init_vector_db()
@@ -50,7 +51,11 @@ class VacancyTabView(TabView):
         if st.button("Получить кандидатов"):
             info_dict = {'Город': self.text_info.city, 'Предлагаемая зарплата': self.text_info.salary}
             
-            docs = db_resume.similarity_search(self.text_info.description, k=10) 
-            resumes_list = [doc.page_content for doc in docs]
+            if len(info_dict['Город'])>0:
+                city = info_dict['Город']
+            else:
+                city = None
+                
+            vacancies_list=get_resume_recommendations(text=self.text_info.description, city=city)
             
-            display_resumes(resumes_list)
+            display_resumes(vacancies_list)
