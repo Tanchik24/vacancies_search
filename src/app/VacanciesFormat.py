@@ -3,7 +3,7 @@ import re
 import streamlit
 
 
-class Format:
+class VacanciesFormat:
     def __int__(self):
         pass
 
@@ -24,9 +24,7 @@ class Format:
             title_match = re.search(r"Header: (.+?); Emoji:", text) or re.search(r"^(.+)\n", text)
             title = title_match.group(1).strip() if title_match else "Unknown Title"
         else:
-            title = Format.extract_vacancy_title(text)
-        url = Format.extract_vacancy_url(text)
-        text = re.sub(re.escape(url), '', text) if url else text
+            title = VacanciesFormat.extract_vacancy_title(text)
         formatted_text = f"# {title}\n\n"
 
         patterns = {
@@ -39,13 +37,19 @@ class Format:
             match = re.search(pattern, text, re.DOTALL)
             if match:
                 content = match.group(1).strip()
+                pattern = r"•\s*([^•]+)"
+                content = re.sub(pattern, r"- \1", content)
                 formatted_text += f"## {key}\n{content}\n\n"
+
+        url = VacanciesFormat.extract_vacancy_url(formatted_text)
+        formatted_text = re.sub(re.escape(url), '', formatted_text) if url else formatted_text
+        formatted_text = re.sub(r'#\S+', '', formatted_text)
 
         return formatted_text.strip(), title, url
 
     @staticmethod
     def format_vacancy2(text):
-        title = Format.extract_vacancy_title(text)
+        title = VacanciesFormat.extract_vacancy_title(text)
         formatted_text = f"# {title.split(':')[1]}\n\n"
 
         patterns = {
@@ -67,6 +71,12 @@ class Format:
                     formatted_text += f"- **{key}:** {value}\n"
             else:
                 formatted_text += f"## {key}: \n"
+                pattern = r"•\s*([^•]+)"
+                extracted_sections[key] = re.sub(pattern, r"- \1", extracted_sections[key])
                 formatted_text += f'{extracted_sections[key]} \n'
+
+        url = VacanciesFormat.extract_vacancy_url(formatted_text)
+        formatted_text = re.sub(re.escape(url), '', formatted_text) if url else formatted_text
+        formatted_text = re.sub(r'#\S+', '', formatted_text)
 
         return formatted_text

@@ -1,1 +1,1 @@
-from .Format import Format
+from .VacanciesFormat import VacanciesFormat
