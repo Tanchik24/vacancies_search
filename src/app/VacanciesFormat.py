@@ -1,8 +1,5 @@
 import re
 
-import streamlit
-
-
 class VacanciesFormat:
     def __int__(self):
         pass
