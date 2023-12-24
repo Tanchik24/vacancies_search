@@ -102,10 +102,28 @@ Faiss.
 
 Каждый эксперимент проводился для 10 случайных объектов.
 
-| Задача                         | mean nDCG@5 | mean nDCG@10 | map@5 | map@10 |
-|--------------------------------|-------------|--------------|-------|--------|
-| Подбор вакансий для соискателя | 0.68        | 0.78         | 0.37  | 0.34   | 
-| Подбор резюме для hr           | 0.84        | 0.9          | 0.6   | 0.39   |  
+| Подбор вакансий                                                            | mean nDCG@5 | mean nDCG@10 | map@5 | map@10 |
+|----------------------------------------------------------------------------|-------------|--------------|-------|--------|
+| FAISS, Similarity search, multilingual-e5-large                            | 0.68        | 0.78         | 0.37  | 0.34   | 
+| FAISS, Similarity search, rubert-base-cased                                | 0.53        | 0.62         | 0.31  | 0.29   | 
+| FAISS, Similarity search, sbert_large_nlu_ru                               | 0.59        | 0.71         | 0.35  | 0.32   | 
+| FAISS, Similarity search, LaBSE                                            | 0.45        | 0.56         | 0.24  | 0.19   |
+| FAISS, Maximum marginal relevance, multilingual-e5-large                   | 0.63        | 0.72         | 0.33  | 0.28   | 
+| FAISS, Maximum marginal relevance, rubert-base-cased                       | 0.51        | 0.57         | 0.27  | 0.23   | 
+| FAISS, Maximum marginal relevance, sbert_large_nlu_ru                      | 0.52        | 0.63         | 0.28  | 0.25   | 
+| FAISS, Maximum marginal relevance, LaBSE                                   | 0.42        | 0.53         | 0.21  | 0.17   |
+
+
+| Подбор резюме для HR                                                       | mean nDCG@5 | mean nDCG@10 | map@5 | map@10 |
+|----------------------------------------------------------------------------|-------------|--------------|-------|--------|
+| FAISS, Similarity search, multilingual-e5-large                            | 0.84        | 0.90         | 0.6   | 0.39   |  
+| FAISS, Similarity search, rubert-base-cased                                | 0.72        | 0.79         | 0.51  | 0.3    |
+| FAISS, Similarity search, sbert_large_nlu_ru                               | 0.76        | 0.81         | 0.57  | 0.35   | 
+| FAISS, Similarity search, LaBSE                                            | 0.59        | 0.66         | 0.45  | 0.31   | 
+| FAISS, Maximum marginal relevance, multilingual-e5-large                   | 0.81        | 0.87         | 0.56  | 0.38   | 
+| FAISS, Maximum marginal relevance, rubert-base-cased                       | 0.71        | 0.77         | 0.48  | 0.29   | 
+| FAISS, Maximum marginal relevance, sbert_large_nlu_ru                      | 0.72        | 0.80         | 0.55  | 0.33   | 
+| FAISS, Maximum marginal relevance, LaBSE                                   | 0.60        | 0.68         | 0.45  | 0.29   |
 
 **Precision at K (p@K)** — доля релевантных объектов среди K.
 Precision at K — метрика простая для понимания и реализации, но имеет важный недостаток — она не учитывает порядок
