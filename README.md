@@ -55,7 +55,7 @@
     ```bash
     poetry install
     ```
-- Скачиваем [базу данных](https://dropmefiles.com/sDVnt) в папку vector_db
+- Скачиваем [базу данных](https://disk.yandex.ru/d/e9QXNfnHsLNY3Q) в папку vector_db
 ## Запуск системы
 
 - Для запуска системы введите команды
