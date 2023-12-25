@@ -100,6 +100,8 @@ Faiss.
 ![img.png](img/img.png)
 ## Эксперименты
 
+Производительность решения с конфигурацией FAISS, Similarity search, multilingual-e5-large: ~270 запросов в секунду при использовании faiss-cpu. На faiss-gpu не проверялось.   
+
 Каждый эксперимент проводился для 10 случайных объектов.
 
 | Подбор вакансий                                                            | mean nDCG@5 | mean nDCG@10 | map@5 | map@10 |
